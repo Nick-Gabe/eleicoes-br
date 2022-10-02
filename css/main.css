@@ -1,0 +1,63 @@
+.container {
+  position: relative;
+  color: white;
+  background-color: var(--gray);
+  padding: 30px;
+  border-radius: 10px;
+  margin: 10px;
+  max-width: 500px;
+  width: 90vw;
+  overflow: hidden;
+}
+
+.posicao {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  font-size: 3rem;
+  font-weight: bolder;
+  margin: 20px;
+  z-index: 2;
+}
+
+.container h2 {
+  position: relative;
+  margin: 0;
+  z-index: 2;
+  max-width: 60%;
+}
+
+.container h3 {
+  position: relative;
+  margin: 0;
+  opacity: .5;
+  z-index: 2;
+  max-width: 60%;
+}
+
+.porcentagem {
+  position: absolute;
+  right: 0;
+  top: 0;
+  font-size: 2rem;
+  margin: 20px;
+  z-index: 2;
+  text-decoration: underline;
+}
+
+.votos {
+  position: relative;
+  margin: 20px 0 0 0;
+  z-index: 2;
+}
+
+.numero {
+  position: absolute;
+  font-size: 15rem;
+  font-weight: bolder;
+  color: var(--black);
+  z-index: 1;
+  opacity: .2;
+  top: -20rem;
+  left: 0px;
+}
