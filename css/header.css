@@ -1,0 +1,33 @@
+header {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+progress[value] {
+  -webkit-appearance: none;
+   appearance: none;
+
+  width: 300px;
+  max-width: 90vw;
+  height: 15px;
+  margin-bottom: 25px;
+}
+
+progress[value]::-webkit-progress-bar {
+  background-color: #eee;
+  border-radius: 20px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.25) inset;
+  overflow: hidden;
+}
+
+progress[value]::-webkit-progress-value {
+  background: #7e7e7e;
+  border-radius: 20px;
+}
+
+#apuradas {
+  color: white;
+  margin: 5px;
+}
