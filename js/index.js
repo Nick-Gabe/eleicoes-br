@@ -1,50 +1,59 @@
-async function pegarCandidatos() {
-  const resultados = await (await fetch('https://resultados.tse.jus.br/oficial/ele2022/544/dados-simplificados/br/br-c0001-e000544-r.json')).json()
-  const candidatos = resultados.cand.sort((a, b) => {
-    return Number(a.pvap) < Number(b.pvap) ? -1 : 1
-  })
+(function () {
+  async function pegarResultados() {
+    const resultados = await (await fetch('https://resultados.tse.jus.br/oficial/ele2022/544/dados-simplificados/br/br-c0001-e000544-r.json')).json()
+    
+    return resultados
+  }
 
-  return candidatos
-}
+  async function popularConteudo() {
+    pegarResultados().then(resultados => {
+      const candidatos = resultados.cand.sort((a, b) => {
+        return Number(a.seq) < Number(b.seq) ? -1 : 1
+      })
 
-async function popularConteudo() {
-  pegarCandidatos().then(candidatos => {
-    const main = document.querySelector('main')
-    main.innerHTML = ''
+      const progress = document.getElementById('total')
+      progress.setAttribute('value', Number(resultados.pst.replace(/,/g, '.')))
 
-    candidatos.forEach((dados, index) => {
+      const apuradas = document.getElementById('apuradas')
+      apuradas.textContent = `${resultados.pst}% das urnas apuradas`
 
-      const container = document.createElement('div')
-      container.className = `container p${index}`
+      const main = document.querySelector('main')
+      main.innerHTML = ''
 
-      const pres = document.createElement('h2')
-      pres.innerHTML = dados.nm
+      candidatos.forEach((dados, index) => {
 
-      const numero = document.createElement('p')
-      numero.textContent = dados.n
-      numero.className = 'numero'
+        const container = document.createElement('div')
+        container.className = `container p${index}`
 
-      const vice = document.createElement('h3')
-      vice.textContent = dados.nv
+        const pres = document.createElement('h2')
+        pres.innerHTML = dados.nm
 
-      const porcentagem = document.createElement('p')
-      porcentagem.textContent = dados.pvap + '%'
-      porcentagem.className = 'porcentagem'
+        const numero = document.createElement('p')
+        numero.textContent = dados.n
+        numero.className = 'numero'
 
-      const votosValidos = document.createElement('p')
-      votosValidos.innerHTML = `<b>Votos válidos:</b> ${Number(dados.vap).toLocaleString()}`
-      votosValidos.className = 'votos'
+        const vice = document.createElement('h3')
+        vice.textContent = dados.nv
 
-      const posicao = document.createElement('p')
-      posicao.textContent = `${index + 1}º`
-      posicao.className = `posicao p${index + 1}`
+        const porcentagem = document.createElement('p')
+        porcentagem.textContent = dados.pvap + '%'
+        porcentagem.className = 'porcentagem'
 
-      container.append(pres, vice, porcentagem, votosValidos, numero, posicao)
+        const votosValidos = document.createElement('p')
+        votosValidos.innerHTML = `<b>Votos válidos:</b> ${Number(dados.vap).toLocaleString()}`
+        votosValidos.className = 'votos'
 
-      main.append(container)
+        const posicao = document.createElement('p')
+        posicao.textContent = `${index + 1}º`
+        posicao.className = `posicao p${index + 1}`
+
+        container.append(pres, vice, porcentagem, votosValidos, numero, posicao)
+
+        main.append(container)
+      })
     })
-  })
-}
+  }
 
-popularConteudo()
-setInterval(popularConteudo, 10000)
+  popularConteudo()
+  setInterval(popularConteudo, 10000)
+})()

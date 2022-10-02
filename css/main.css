@@ -61,3 +61,48 @@
   top: -20rem;
   left: 0px;
 }
+
+#timer {
+  color: white;
+  font-weight: bolder;
+  position: fixed;
+  width: 50px;
+  height: 50px;
+  text-align: center;
+  bottom: 0;
+  right: 0;
+  margin: 10px;
+  padding: 10px;
+  border-radius: 50%;
+  background-color: var(--gray);
+  opacity: .3;
+  font-size: 1.5rem;
+  z-index: 3;
+}
+
+progress[value] {
+  -webkit-appearance: none;
+   appearance: none;
+
+  width: 300px;
+  max-width: 90vw;
+  height: 15px;
+  margin-bottom: 25px;
+}
+
+progress[value]::-webkit-progress-bar {
+  background-color: #eee;
+  border-radius: 20px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.25) inset;
+  overflow: hidden;
+}
+
+progress[value]::-webkit-progress-value {
+  background: #7e7e7e;
+  border-radius: 20px;
+}
+
+#apuradas {
+  color: white;
+  margin: 5px;
+}
