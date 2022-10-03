@@ -20,7 +20,7 @@
       const main = document.querySelector('main')
       main.innerHTML = ''
       const resultado = document.getElementById('result')
-      const finalizou = Math.floor(resultados.pst.replace(/,/g, '.')) === 100
+      const finalizou = Math.floor(resultados.pst.replace(/,/g, '.')) > 98
       const segundoTurno = Number(candidatos[0].pvap.replace(/,/g, '.')) <= 50
 
       if (finalizou && segundoTurno) {
