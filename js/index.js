@@ -1,7 +1,7 @@
 (function () {
   async function pegarResultados() {
     const resultados = await (await fetch('https://resultados.tse.jus.br/oficial/ele2022/544/dados-simplificados/br/br-c0001-e000544-r.json')).json()
-    
+
     return resultados
   }
 
@@ -19,11 +19,26 @@
 
       const main = document.querySelector('main')
       main.innerHTML = ''
+      const resultado = document.getElementById('result')
+      const finalizou = Math.floor(resultados.pst.replace(/,/g, '.')) === 100
+      const segundoTurno = Number(candidatos[0].pvap.replace(/,/g, '.')) <= 50
+
+      if (finalizou && segundoTurno) {
+        resultado.textContent = 'Será necessário um segundo turno entre:'
+      } else if (finalizou && !segundoTurno) {
+        resultado.textContent = 'O vencedor é:'
+      }
 
       candidatos.forEach((dados, index) => {
 
         const container = document.createElement('div')
         container.className = `container p${index}`
+
+        if (finalizou && segundoTurno && [0, 1].includes(index)) {
+          container.style.backgroundColor = '#348246'
+        } else if (!segundoTurno && index === 0) {
+          container.style.backgroundColor = '#348246'
+        }
 
         const pres = document.createElement('h2')
         pres.innerHTML = dados.nm

@@ -12,7 +12,7 @@ progress[value] {
   width: 300px;
   max-width: 90vw;
   height: 15px;
-  margin-bottom: 25px;
+  margin-bottom: 5px;
 }
 
 progress[value]::-webkit-progress-bar {
@@ -30,4 +30,9 @@ progress[value]::-webkit-progress-value {
 #apuradas {
   color: white;
   margin: 5px;
+}
+
+#result {
+  color: white;
+  margin: 0 0 10px 0;
 }
